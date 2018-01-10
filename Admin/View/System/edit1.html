@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>医院新增</title>
+	
+
+	<link rel="stylesheet" href="__PUBLIC__/Admin/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/addstyle.css">
+</head>
+<body>
+	
+	<div class="container">
+        <div class="add">
+            <div class="add_head">
+                <h3><span>医院管理员修改</span></h3>
+            </div>
+            <form action="{:U('admin/System/edit1x')}" method="post">
+                    <!--医院代码-->
+                    <foreach name="list" item="qq">
+                    <div class="add-box">
+                            <!--表单项-->
+                            <div class="box">
+                                <label for="hoscode">管理员代码</label>
+                                <input name="hospitaladminname" style="display:none" value="{$qq.hospitaladminname}" class="input-xlarge" type="text" id="hoscode1" placeholder="管理员代码">
+                                <input disabled value="{$qq.hospitaladminname}" class="input-xlarge" type="text" id="hoscode" placeholder="管理员代码">
+                            </div>
+                            
+                    </div>
+                    <!-- 密码 -->
+                    <div class="add-box">
+                            <!--表单项-->
+                            <div class="box">
+                                <label for="syspwd">管理员密码</label>
+                                <input name="hospitaladminpwd" value="{$qq.hospitaladminpwd}" class="input-xlarge" type="text" id="syspwd" placeholder="管理员密码">
+                            </div>
+                           
+                    </div>
+                    <!-- 确认密码 -->
+                    <div class="add-box">
+                            <!--表单项-->
+                            <div class="box">
+                                <label for="adminphone">管理员手机</label>
+                                <input name="admintel" value="{$qq.admintel}" class="input-xlarge" type="text" id="adminphone" placeholder="管理员手机">
+                            </div>
+                            
+                    </div>
+                    <div class="add-box">
+                            <!--表单项-->
+                            <div class="box">
+                                <label for="hos">医 院 代 码 </label>
+                                  <input name="hospitalcode" style="display:none" value="{$qq.hospitalcode}" type="text" class="input-xlarge" id="hos2" placeholder="医院代码"/>
+								  <input value="{$qq.hospitalcode}" disabled type="text" class="input-xlarge" id="hos1" placeholder="医院代码"/>
+                            </div>
+                            
+                    </div>
+                     <div class="add-box">
+                            <!--表单项-->
+                            <div class="box">
+                                <label for="hos">医 院 </label>
+                                  <input name="hospitalname" style="display:none" value="{$qq.hospitalname}" type="text" class="input-xlarge" id="hos3" placeholder="管理员所属医院"/>
+                                  <input disabled value="{$qq.hospitalname}" type="text" class="input-xlarge" id="hos" placeholder="管理员所属医院"/>
+                            </div>
+                            
+                    </div>
+                    
+                    <!-- 注册按钮 -->
+                   <div class="add-box">
+                   	 <input type="submit" class="btn btn-success tijiao" value="提交">
+                   </div>
+                </foreach>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

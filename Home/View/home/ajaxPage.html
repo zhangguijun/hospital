@@ -1,0 +1,20 @@
+<foreach name="list" item="ind">
+        <div class="hdisplay_box clearfix">
+          <div class="display_left col-md-3 col-xs-12">
+              <a href="hospital.html"><img  class="img-responsive" src="__PUBLIC__/Admin/img/{$ind.image}" alt=""></a>
+          </div>
+          <div class="display_right">
+             
+                  <h3 class="hostitle"><span>{$ind.hospitalname}</span></h3>
+                  <p class="hostitle"><span>{$ind.hospitallevelcode}</span></p>
+                  <p class="hostitle"><span>{$ind.governcode}</span></p>
+            
+              <p class="hosdes"><span>
+                  {$ind.info}
+              </span></p>
+          </div>
+        </div>
+      </foreach>
+      <div class="page" style="text-align:center">
+					{$page}
+    </div>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>医院专家申停管理</title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/dist/css/bootstrap.min.css">
+
+
+</head>
+<body>
+		
+	<div class="main container">
+		<a class="btn btn-info" href="zuozhenshijianguanli.html">停诊申请</a>
+		<a class="btn btn-info" href="{:U('admin/Doctor/shentingjilu')}">申停纪录</a>
+		
+			<table class="table table-striped">
+				    <thead>
+					    <tr>
+					        <th>专家代码</th>
+					        <th>时间</th>
+					        <th>范围</th>
+					        <th>开始日期</th>
+					        <th>结束日期</th>
+					        <th>申请原因</th>
+					        <th>申请时间</th>
+					        <!-- <th>拒绝原因</th> -->
+					        <th></th>
+					    </tr>
+				    </thead>
+				    <tbody>
+						<foreach name="list" item="stj">
+					    <tr>
+					        <td>{$stj.expertname}</td>
+					        <td>{$stj.time}</td>
+					        <td>{$stj.upaft}</td>
+					        <td>{$stj.startdate}</td>
+					        <td>{$stj.stopdate}</td>
+					        <td>{$stj.requirereason}</td>
+					        <td>{$stj.requiretime}</td>
+					        <!-- <td>{$stj.rejectreason}</td> -->
+							<if condition="$stj.statues eq '同意'"><td><button class="btn btn-success">同意</button></td>
+							<elseif condition="$stj.statues eq '拒绝'"/><td><button class="btn btn-danger">拒绝</button></td>
+							<else /><td><button class="btn btn-warning">待审核</button></td>
+							</if>
+
+
+					    </tr>
+
+						</foreach>
+				    </tbody>
+			</table>
+			<div style="text-align:center">
+					{$page}</div>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.min.js"></script> 
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/bootstrap.min.js"></script> 
+</body>
+</html>

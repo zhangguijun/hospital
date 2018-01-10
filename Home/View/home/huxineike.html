@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>呼吸内科</title>
+    <link rel="stylesheet" href="__PUBLIC__/Home/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/base.css">
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/hosp.css">
+
+    <script src="__PUBLIC__/Home/js/jquery-1.11.1.min.js"></script>
+    <script src="__PUBLIC__/Home/dist/js/bootstrap.min.js"></script>
+
+    
+
+
+<style>
+                @media screen and (max-width :35.5em){
+                    table thead{
+                        display: none;
+                    }
+                    table tr{
+                        margin-bottom: 10px;
+                        display: block;
+                        border-bottom: 1px dotted #ddd;
+                    }
+                    .tdh{
+                            height: 30px;
+                    }
+                    table td{
+                        display: block;
+                        text-align: center;
+                        font-size: 13px;
+                       /* height: 30px; */
+                        border-bottom: 1px dotted #ccc;
+                    }
+                    table td:last-child{
+                        border-bottom: 0;
+                    }
+                    table td::before{
+                        content: attr(data-label);
+                        font-size: bold;
+                        float: left;
+                    }
+                }
+            </style>
+</head>
+<body>
+        <div class="header container clearfix">
+                <div class="hearder_top">
+                        <div class="container ">
+                                <div class="hleft" style="float:left;">
+                                     <span>您好，欢迎您来到青岛预约挂号系统</span>
+                                </div>
+                                <div class="sn-quick-menu fr">
+                                        <a class="sn-sys logo-behind" href="http://hospital.com/index.php/Admin/System/adminindex"></a>
+                                        <a class="sn-hos logo-behind" href="http://hospital.com/index.php/Admin/Hospital/index"></a>
+                                        <a class="sn-doc logo-behind" href="http://hospital.com/index.php/Admin/Doctor/yishengindex"></a>
+                                        <a class="sn-pat logo-behind" href="http://hospital.com/index.php/Admin/Patient/personadmin"></a>
+                                        <a class="sn-logout logo-behind" href="#">退出</a>
+                                </div>
+                            </div>
+                </div>
+                <div class="heder_logo col-md-4 col-sm-12 fl "><a href="http://hospital.com/index.php/Home/home/index"><img src="__PUBLIC__/Home/img/ghlogo.jpg" alt="青岛挂号"></a></div>
+                
+        </div>
+       <div class="container">
+               <foreach name="list1" item="vv">
+            <div class="ksym ">
+                    <h3><span>{$vv.keshiname}</span></h3>
+                    <p><span>医院:{$vv.hospitalname}</span></p>
+                    <p><span>
+                            简介：{$vv.keshiinfo}
+                    </span></p>
+                </div>
+               
+            <div class="keshicontent">
+                    <table class="table">
+                                <thead>
+                                                <tr>
+                                                    <th>专家</th>
+                                                    <th></th>
+                                                    <th >{$date1}<br/>{$xingqi1}</th>
+                                                    <th >{$date2}<br/>{$xingqi2}</th>
+                                                    <th >{$date3}<br/>{$xingqi3}</th>
+                                                    <th >{$date4}<br/>{$xingqi4}</th>
+                                                    <th >{$date5}<br/>{$xingqi5}</th>
+                                                    <th >{$date6}<br/>{$xingqi6}</th>
+                                                    <th >{$date7}<br/>{$xingqi7}</th>
+                                                </tr>
+                                            </thead>
+                            <foreach name="list" item="vo">
+                           
+                            <tbody>
+                                <switch name="xingqi1">
+                        <case value="星期一">
+                                <tr>
+                                    <td rowspan="2"><a href="{:U('Home/home/hosperson',array('expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}"><img src="__PUBLIC__/Admin/img/{$vo.photo}" width="100px" height="100px" alt=""></a> 
+                                   <p>{$vo.expertname}</p>
+                                    <p>{$vo.expertlevelcode}</p>            
+                                    </td>
+                                    <td>上午</td>
+                                    <if condition="$vo.monmor eq '坐诊'">
+                                    <td class="tdh" data-label="{$date1}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date1,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                    <else /><td class="tdh" data-label="{$date1}"></td>
+                                    </if>
+                                    <if condition="$vo.tuemor eq '坐诊'">
+                                                <td class="tdh" data-label="{$date2}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date2,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date2}"></td>
+                                                </if>
+                                <if condition="$vo.wedmor eq '坐诊'">
+                                                <td class="tdh" data-label="{$date3}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date3,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date3}"></td>
+                                                </if>
+                                <if condition="$vo.thumor eq '坐诊'">
+                                        <td class="tdh" data-label="{$date4}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date4,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                        <else /><td class="tdh" data-label="{$date4}"></td>
+                                </if>
+                                <if condition="$vo.frimor eq '坐诊'">
+                                        <td class="tdh" data-label="{$date5}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date5,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                        <else /><td class="tdh" data-label="{$date5}"></td>
+                                </if>
+                                <if condition="$vo.satmor eq '坐诊'">
+                                        <td class="tdh" data-label="{$date6}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date6,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                        <else /><td class="tdh" data-label="{$date6}"></td>
+                                </if>
+                                <if condition="$vo.sunmor eq '坐诊'">
+                                        <td class="tdh" data-label="{$date7}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date7,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                        <else /><td class="tdh" data-label="{$date7}"></td>
+                                </if>
+                                </tr> 
+                                 <tr>
+                                    
+                                    <td>下午</td>
+                                    <if condition="$vo.monaft eq '坐诊'">
+                                                <td class="tdh" data-label="{$date1}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date1,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date1}"></td>
+                                                </if>
+                                                <if condition="$vo.tueaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date2}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date2,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date2}"></td>
+                                                            </if>
+                                            <if condition="$vo.wedaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date3}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date3,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date3}"></td>
+                                                            </if>
+                                            <if condition="$vo.thuaft eq '坐诊'">
+                                                    <td class="tdh" data-label="{$date4}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date4,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                    <else /><td class="tdh" data-label="{$date4}"></td>
+                                            </if>
+                                            <if condition="$vo.friaft eq '坐诊'">
+                                                    <td class="tdh" data-label="{$date5}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date5,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                    <else /><td class="tdh" data-label="{$date5}"></td>
+                                            </if>
+                                            <if condition="$vo.sataft eq '坐诊'">
+                                                    <td class="tdh" data-label="{$date6}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date6,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                    <else /><td class="tdh" data-label="{$date6}"></td>
+                                            </if>
+                                            <if condition="$vo.sunaft eq '坐诊'">
+                                                    <td class="tdh" data-label="{$date7}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date7,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                    <else /><td class="tdh" data-label="{$date7}"></td>
+                                            </if>
+                                            </tr>
+                                </tr> 
+                        </case>
+                        <case value="星期二">
+                                        <tr>
+                                            <td rowspan="2"><a href="{:U('Home/home/hosperson',array('expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}"><img src="__PUBLIC__/Admin/img/{$vo.photo}" width="100px" height="100px" alt=""></a> 
+                                           <p>{$vo.expertname}</p>
+                                            <p>{$vo.expertlevelcode}</p>            
+                                            </td>
+                                            <td>上午</td>
+                                            
+                                            <if condition="$vo.tuemor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date1}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date1,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date1}"></td>
+                                                        </if>
+                                        <if condition="$vo.wedmor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date2}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date2,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date2}"></td>
+                                                        </if>
+                                        <if condition="$vo.thumor eq '坐诊'">
+                                                <td class="tdh" data-label="{$date3}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date3,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date3}"></td>
+                                        </if>
+                                        <if condition="$vo.frimor eq '坐诊'">
+                                                <td class="tdh" data-label="{$date4}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date4,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date4}"></td>
+                                        </if>
+                                        <if condition="$vo.satmor eq '坐诊'">
+                                                <td class="tdh" data-label="{$date5}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date5,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date5}"></td>
+                                        </if>
+                                        <if condition="$vo.sunmor eq '坐诊'">
+                                                <td class="tdh" data-label="{$date6}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date6,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date6}"></td>
+                                        </if>
+                                        <if condition="$vo.monmor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date7}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date7,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date7}"></td>
+                                        </if>
+                                        </tr> 
+                                         <tr>
+                                            
+                                            <td>下午</td>
+                                            
+                                                        <if condition="$vo.tueaft eq '坐诊'">
+                                                                    <td class="tdh" data-label="{$date1}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date1,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                    <else /><td class="tdh" data-label="{$date1}"></td>
+                                                                    </if>
+                                                    <if condition="$vo.wedaft eq '坐诊'">
+                                                                    <td class="tdh" data-label="{$date2}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date2,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                    <else /><td class="tdh" data-label="{$date2}"></td>
+                                                                    </if>
+                                                    <if condition="$vo.thuaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date3}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date3,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date3}"></td>
+                                                    </if>
+                                                    <if condition="$vo.friaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date4}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date4,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date4}"></td>
+                                                    </if>
+                                                    <if condition="$vo.sataft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date5}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date5,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date5}"></td>
+                                                    </if>
+                                                    <if condition="$vo.sunaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date6}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date6,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date6}"></td>
+                                                    </if>
+                                                    <if condition="$vo.monaft eq '坐诊'">
+                                                                <td class="tdh" data-label="{$date7}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date7,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                <else /><td class="tdh" data-label="{$date7}"></td>
+                                                   </if>
+                                                    </tr>
+                                        </tr> 
+                        </case>
+                        <case value="星期三">
+                                        <tr>
+                                            <td rowspan="2"><a href="{:U('Home/home/hosperson',array('expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}"><img src="__PUBLIC__/Admin/img/{$vo.photo}" width="100px" height="100px" alt=""></a> 
+                                           <p>{$vo.expertname}</p>
+                                            <p>{$vo.expertlevelcode}</p>            
+                                            </td>
+                                            <td>上午</td>
+                                            
+                                           
+                                        <if condition="$vo.wedmor eq '坐诊'">
+                                                        <td  class="tdh" data-label="{$date1}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date1,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh"  data-label="{$date1}"></td>
+                                                        </if>
+                                        <if condition="$vo.thumor eq '坐诊'">
+                                                <td  class="tdh" data-label="{$date2}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date2,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td  class="tdh" data-label="{$date2}"></td>
+                                        </if>
+                                        <if condition="$vo.frimor eq '坐诊'">
+                                                <td  class="tdh" data-label="{$date3}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date3,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td  class="tdh" data-label="{$date3}"></td>
+                                        </if>
+                                        <if condition="$vo.satmor eq '坐诊'">
+                                                <td  class="tdh" data-label="{$date4}" ><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date4,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date4}" ></td>
+                                        </if>
+                                        <if condition="$vo.sunmor eq '坐诊'">
+                                                <td class="tdh" data-label="{$date5}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date5,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date5}"></td>
+                                        </if>
+                                        <if condition="$vo.monmor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date6}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date6,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date6}"></td>
+                                        </if>
+                                        <if condition="$vo.tuemor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date7}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date7,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date7}"></td>
+                                                        </if>
+                                        </tr> 
+                                         <tr>
+                                            
+                                            <td>下午</td>
+                                            
+                                                       
+                                                    <if condition="$vo.wedaft eq '坐诊'">
+                                                                    <td class="tdh" data-label="{$date1}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date1,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                    <else /><td class="tdh" data-label="{$date1}"></td>
+                                                                    </if>
+                                                    <if condition="$vo.thuaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date2}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date2,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date2}"></td>
+                                                    </if>
+                                                    <if condition="$vo.friaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date3}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date3,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date3}"></td>
+                                                    </if>
+                                                    <if condition="$vo.sataft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date4}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date4,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date4}"></td>
+                                                    </if>
+                                                    <if condition="$vo.sunaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date5}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date5,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date5}"></td>
+                                                    </if>
+                                                    <if condition="$vo.monaft eq '坐诊'">
+                                                                <td class="tdh" data-label="{$date6}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date6,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                <else /><td class="tdh" data-label="{$date6}"></td>
+                                                   </if>
+                                                   <if condition="$vo.tueaft eq '坐诊'">
+                                                                <td class="tdh" data-label="{$date7}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date7,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                <else /><td class="tdh" data-label="{$date7}"></td>
+                                                                </if>
+                                                    </tr>
+                                        </tr> 
+                        </case>
+                        <case value="星期四">
+                                        <tr>
+                                            <td rowspan="2"><a href="{:U('Home/home/hosperson',array('expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}"><img src="__PUBLIC__/Admin/img/{$vo.photo}" width="100px" height="100px" alt=""></a> 
+                                           <p>{$vo.expertname}</p>
+                                            <p>{$vo.expertlevelcode}</p>            
+                                            </td>
+                                            <td>上午</td>
+                                            
+                                        <if condition="$vo.thumor eq '坐诊'">
+                                                <td  class="tdh" data-label="{$date1}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date1,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td  class="tdh" data-label="{$date1}"></td>
+                                        </if>
+                                        <if condition="$vo.frimor eq '坐诊'">
+                                                <td  class="tdh" data-label="{$date2}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date2,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td  class="tdh" data-label="{$date2}"></td>
+                                        </if>
+                                        <if condition="$vo.satmor eq '坐诊'">
+                                                <td  class="tdh" data-label="{$date3}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date3,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td  class="tdh" data-label="{$date3}"></td>
+                                        </if>
+                                        <if condition="$vo.sunmor eq '坐诊'">
+                                                <td  class="tdh" data-label="{$date4}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date4,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td  class="tdh" data-label="{$date4}"></td>
+                                        </if>
+                                        <if condition="$vo.monmor eq '坐诊'">
+                                                        <td  class="tdh" data-label="{$date5}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date5,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td  class="tdh" data-label="{$date5}"></td>
+                                        </if>
+                                        <if condition="$vo.tuemor eq '坐诊'">
+                                                        <td  class="tdh" data-label="{$date6}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date6,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td  class="tdh" data-label="{$date6}"></td>
+                                                        </if>
+                                        
+                                           
+                                        <if condition="$vo.wedmor eq '坐诊'">
+                                                                        <td  class="tdh" data-label="{$date7}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date7,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                        <else /><td  class="tdh" data-label="{$date7}"></td>
+                                                                        </if>
+                                        </tr> 
+                                         <tr>
+                                            
+                                            <td>下午</td>
+                                            
+                                                       
+                                                    
+                                                    <if condition="$vo.thuaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date1}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date1,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date1}"></td>
+                                                    </if>
+                                                    <if condition="$vo.friaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date2}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date2,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date2}"></td>
+                                                    </if>
+                                                    <if condition="$vo.sataft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date3}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date3,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date3}"></td>
+                                                    </if>
+                                                    <if condition="$vo.sunaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date4}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date4,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date4}"></td>
+                                                    </if>
+                                                    <if condition="$vo.monaft eq '坐诊'">
+                                                                <td class="tdh" data-label="{$date5}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date5,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                <else /><td class="tdh" data-label="{$date5}"></td>
+                                                   </if>
+                                                   <if condition="$vo.tueaft eq '坐诊'">
+                                                                <td class="tdh" data-label="{$date6}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date6,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                <else /><td class="tdh" data-label="{$date6}"></td>
+                                                                </if>
+                                                                <if condition="$vo.wedaft eq '坐诊'">
+                                                                                <td class="tdh" data-label="{$date7}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date7,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                                <else /><td class="tdh" data-label="{$date7}"></td>
+                                                                                </if>
+                                                    </tr>
+                                        </tr> 
+                        </case>
+                        <case value="星期五">
+                                        <tr>
+                                            <td rowspan="2"><a href="{:U('Home/home/hosperson',array('expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}"><img src="__PUBLIC__/Admin/img/{$vo.photo}" width="100px" height="100px" alt=""></a> 
+                                           <p>{$vo.expertname}</p>
+                                            <p>{$vo.expertlevelcode}</p>            
+                                            </td>
+                                            <td>上午</td>
+                                            
+                                        
+                                        <if condition="$vo.frimor eq '坐诊'">
+                                                <td  class="tdh" data-label="{$date1}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date1,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date1}"></td>
+                                        </if>
+                                        <if condition="$vo.satmor eq '坐诊'">
+                                                <td class="tdh" data-label="{$date2}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date2,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date2}"></td>
+                                        </if>
+                                        <if condition="$vo.sunmor eq '坐诊'">
+                                                <td class="tdh" data-label="{$date3}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date3,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date3}"></td>
+                                        </if>
+                                        <if condition="$vo.monmor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date4}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date4,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date4}"></td>
+                                        </if>
+                                        <if condition="$vo.tuemor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date5}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date5,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date5}"></td>
+                                                        </if>
+                                        
+                                           
+                                        <if condition="$vo.wedmor eq '坐诊'">
+                                                                        <td class="tdh" data-label="{$date6}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date6,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                        <else /><td class="tdh" data-label="{$date6}"></td>
+                                        </if>
+                                        <if condition="$vo.thumor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date7}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date7,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date7}"></td>
+                                        </if>
+                                        
+                                        </tr> 
+                                         <tr>
+                                            
+                                            <td>下午</td>
+                                            
+                                                       
+                                                    
+                                                    
+                                                    <if condition="$vo.friaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date1}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date1,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date1}"></td>
+                                                    </if>
+                                                    <if condition="$vo.sataft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date2}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date2,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date2}"></td>
+                                                    </if>
+                                                    <if condition="$vo.sunaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date3}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date3,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date3}"></td>
+                                                    </if>
+                                                    <if condition="$vo.monaft eq '坐诊'">
+                                                                <td class="tdh" data-label="{$date4}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date4,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                <else /><td class="tdh" data-label="{$date4}"></td>
+                                                   </if>
+                                                   <if condition="$vo.tueaft eq '坐诊'">
+                                                                <td class="tdh" data-label="{$date5}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date5,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                <else /><td class="tdh" data-label="{$date5}"></td>
+                                                                </if>
+                                                                <if condition="$vo.wedaft eq '坐诊'">
+                                                                                <td class="tdh" data-label="{$date6}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date6,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                                <else /><td class="tdh" data-label="{$date6}"></td>
+                                                                                </if>
+                                                                                <if condition="$vo.thuaft eq '坐诊'">
+                                                                                                <td class="tdh" data-label="{$date7}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date7,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                                                <else /><td class="tdh" data-label="{$date7}"></td>
+                                                                                        </if>
+                                                                        </tr>
+                                        </tr> 
+                        </case>
+                        <case value="星期六">
+                                        <tr>
+                                            <td rowspan="2"><a href="{:U('Home/home/hosperson',array('expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}"><img src="__PUBLIC__/Admin/img/{$vo.photo}" width="100px" height="100px" alt=""></a> 
+                                           <p>{$vo.expertname}</p>
+                                            <p>{$vo.expertlevelcode}</p>            
+                                            </td>
+                                            <td>上午</td>
+                                            
+                                        
+                                        
+                                        <if condition="$vo.satmor eq '坐诊'">
+                                                <td class="tdh" data-label="{$date1}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date1,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date1}"></td>
+                                        </if>
+                                        <if condition="$vo.sunmor eq '坐诊'">
+                                                <td class="tdh" data-label="{$date2}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date2,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date2}"></td>
+                                        </if>
+                                        <if condition="$vo.monmor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date3}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date3,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date3}"></td>
+                                        </if>
+                                        <if condition="$vo.tuemor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date4}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date4,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date4}"></td>
+                                                        </if>
+                                        
+                                           
+                                        <if condition="$vo.wedmor eq '坐诊'">
+                                                                        <td class="tdh" data-label="{$date5}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date5,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                        <else /><td class="tdh" data-label="{$date5}"></td>
+                                        </if>
+                                        <if condition="$vo.thumor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date6}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date6,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date6}"></td>
+                                        </if>
+                                        <if condition="$vo.frimor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date7}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date7,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date7}"></td>
+                                                </if>
+                                        
+                                        </tr> 
+                                         <tr>
+                                            
+                                            <td>下午</td>
+                                            
+                                                       
+                                                    
+                                                    
+                                                   
+                                                    <if condition="$vo.sataft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date1}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date1,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date1}"></td>
+                                                    </if>
+                                                    <if condition="$vo.sunaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date2}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date2,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date2}"></td>
+                                                    </if>
+                                                    <if condition="$vo.monaft eq '坐诊'">
+                                                                <td class="tdh" data-label="{$date3}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date3,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                <else /><td class="tdh" data-label="{$date3}"></td>
+                                                   </if>
+                                                   <if condition="$vo.tueaft eq '坐诊'">
+                                                                <td class="tdh" data-label="{$date4}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date4,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                <else /><td class="tdh" data-label="{$date4}"></td>
+                                                                </if>
+                                                                <if condition="$vo.wedaft eq '坐诊'">
+                                                                                <td class="tdh" data-label="{$date5}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date5,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                                <else /><td class="tdh" data-label="{$date5}"></td>
+                                                                                </if>
+                                                                                <if condition="$vo.thuaft eq '坐诊'">
+                                                                                                <td class="tdh" data-label="{$date6}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date6,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                                                <else /><td class="tdh" data-label="{$date6}"></td>
+                                                                </if>
+                                                                <if condition="$vo.friaft eq '坐诊'">
+                                                                                <td class="tdh" data-label="{$date7}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date7,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                                <else /><td class="tdh" data-label="{$date7}"></td>
+                                                                </if>
+                                                                        </tr>
+                                        </tr> 
+                        </case>
+                        <case value="星期日">
+                                        <tr>
+                                            <td rowspan="2"><a href="{:U('Home/home/hosperson',array('expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}"><img src="__PUBLIC__/Admin/img/{$vo.photo}" width="100px" height="100px" alt=""></a> 
+                                           <p>{$vo.expertname}</p>
+                                            <p>{$vo.expertlevelcode}</p>            
+                                            </td>
+                                            <td>上午</td>
+                                            
+                                        
+                                        
+                                        
+                                        <if condition="$vo.sunmor eq '坐诊'">
+                                                <td class="tdh" data-label="{$date1}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date1,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                <else /><td class="tdh" data-label="{$date1}"></td>
+                                        </if>
+                                        <if condition="$vo.monmor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date2}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date2,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date2}"></td>
+                                        </if>
+                                        <if condition="$vo.tuemor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date3}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date3,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date3}"></td>
+                                                        </if>
+                                        
+                                           
+                                        <if condition="$vo.wedmor eq '坐诊'">
+                                                                        <td class="tdh" data-label="{$date4}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date4,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                        <else /><td class="tdh" data-label="{$date4}"></td>
+                                        </if>
+                                        <if condition="$vo.thumor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date5}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date5,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date5}"></td>
+                                        </if>
+                                        <if condition="$vo.frimor eq '坐诊'">
+                                                        <td class="tdh" data-label="{$date6}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date6,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                        <else /><td class="tdh" data-label="{$date6}"></td>
+                                                </if>
+                                                <if condition="$vo.satmor eq '坐诊'">
+                                                                <td class="tdh" data-label="{$date7}"><a href="{:U('Home/home/yuyue',array('we'=>'1','yuyuetime'=>$date7,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                <else /><td class="tdh" data-label="{$date7}"></td>
+                                                        </if>
+                                        
+                                        </tr> 
+                                         <tr>
+                                            
+                                            <td>下午</td>
+                                            
+                                                       
+                                                    
+                                                    
+                                                   
+                                                    
+                                                    <if condition="$vo.sunaft eq '坐诊'">
+                                                            <td class="tdh" data-label="{$date1}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date1,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                            <else /><td class="tdh" data-label="{$date1}"></td>
+                                                    </if>
+                                                    <if condition="$vo.monaft eq '坐诊'">
+                                                                <td class="tdh" data-label="{$date2}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date2,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                <else /><td class="tdh" data-label="{$date2}"></td>
+                                                   </if>
+                                                   <if condition="$vo.tueaft eq '坐诊'">
+                                                                <td class="tdh" data-label="{$date3}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date3,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                <else /><td class="tdh" data-label="{$date3}"></td>
+                                                                </if>
+                                                                <if condition="$vo.wedaft eq '坐诊'">
+                                                                                <td class="tdh" data-label="{$date4}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date4,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                                <else /><td class="tdh" data-label="{$date4}"></td>
+                                                                                </if>
+                                                                                <if condition="$vo.thuaft eq '坐诊'">
+                                                                                                <td class="tdh" data-label="{$date5}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date5,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                                                <else /><td class="tdh" data-label="{$date5}"></td>
+                                                                </if>
+                                                                <if condition="$vo.friaft eq '坐诊'">
+                                                                                <td class="tdh" data-label="{$date6}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date6,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                                <else /><td class="tdh" data-label="{$date6}"></td>
+                                                                </if>
+                                                                <if condition="$vo.sataft eq '坐诊'">
+                                                                                <td class="tdh" data-label="{$date7}"><a href="{:U('Home/home/yuyue',array('we'=>'2','yuyuetime'=>$date7,'expertname'=>$vo['expertname'],'keshicode'=>$vv['keshiname'],'hospitalcode'=>$vv['hospitalname']))}">预约</a> </td>
+                                                                                <else /><td class="tdh" data-label="{$date7}"></td>
+                                                                        </if>
+                                                                        </tr>
+                                        </tr> 
+                        </case>
+                        
+
+                        </switch>
+                            </tbody>
+                            </foreach>
+                    </table>
+                    <div style="text-align:center">
+                                {$page}
+</div>
+            </div>
+        </foreach>
+       </div>
+
+       <div class="footer container">
+            <p class="footer_p"> 
+               医院预约诊疗服务平台 <a href="http://hospital.com/index.php/Home/home/index">青岛网上预约挂号</a> 2017年12月
+               <br>
+                NIIT版权所有
+            </p>
+        </div> 
+        <script>
+                //标头需要ajax请求的地址
+               // var headerRequestUrl="http://hospital.com/index.php/Home/Header/header";
+                //点击退出请求的地址
+                //var logoutRequestUrl="http://hospital.com/index.php/Home/Header/logout";
+        </script>
+        <script src="__PUBLIC__/Home/js/js_header.js"></script>
+</body>
+</html>

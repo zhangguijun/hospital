@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>医院专家管理</title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/dist/css/bootstrap.min.css">
+
+
+</head>
+<body>
+	<div class="main container">
+
+		<form action="{:U('admin/Hospital/zhuanjiaguanli')}" method="post">
+			专家：<input class="hospitaltext" name="expertname" type="text" placeholder="专家姓名">
+			 <input type="submit" class="btn" value="搜索">
+			 <a class="btn btn-success" href="{:U('admin/hospital/add1')}"> 添加</a>
+		</form>
+
+			<table class="table table-striped">
+				    <thead>
+					    <tr>
+					        <th>专家代码</th>
+					        <th>专家名称</th>
+							<th>科室名称</th>
+					        <th>专家级别</th>
+					        <th>专家手机</th>
+					        <th></th>
+					        <th></th>
+					    </tr>
+				    </thead>
+				    <tbody>
+						<foreach name="list" item="zj">
+					    <tr>
+							<td>{$zj.expertcode}</td>
+					        <td>{$zj.expertname}</td>
+							<td>{$zj.keshicode}</td>
+					        <td>{$zj.expertlevelcode}</td>
+					        <td>{$zj.tel}</td>
+					        <td><a class="btn btn-info" href="{:U('admin/Hospital/edit1',array('expertcode'=>$zj['expertcode']))}"> 修改</a></td>
+							<form action="{:U('admin/Hospital/zhuanjiaguanli')}" method="get">
+					        <td><input style="display: none" class="btn btn-success" name="expertname" value="{$zj.expertname}"/>
+							<input type="submit" class="btn btn-success" value="删除"/>
+							</td>
+							</form>
+					    </tr>
+						</foreach>
+				    </tbody>
+			</table>
+			<div style="text-align:center">
+					{$page}</div>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.min.js"></script> 
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/bootstrap.min.js"></script> 
+</body>
+</html>

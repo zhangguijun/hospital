@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>医院专家管理</title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/dist/css/bootstrap.min.css">
+
+
+</head>
+<body>
+
+	<div class="main container">
+			<table class="table table-striped">
+				    <thead>
+					    <tr>
+					        <th>名字</th>
+					        <th>身份证号</th>
+					        
+					        <th></th>
+					    </tr>
+				    </thead>
+				    <tbody>
+						<foreach name="list" item="bl">
+					    <tr>
+							<td>{$bl.patientname}</td>
+							<td>{$bl.id}</td>
+							
+							<form action="{:U('admin/Hospital/blacklist')}" method="get">
+							<td>
+								<input style="display: none" name="id" value="{$bl.id}">
+								<input type="submit" class="btn btn-danger" value="删除"/></td>
+							
+							</form>
+					    </tr>
+						</foreach>
+				    </tbody>
+			</table>
+			<div style="text-align:center">
+					{$page}</div>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.min.js"></script> 
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/bootstrap.min.js"></script> 
+</body>
+</html>

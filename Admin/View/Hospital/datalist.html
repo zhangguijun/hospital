@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数据报表管理</title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/dist/css/bootstrap.min.css">
+
+
+</head>
+<body>
+
+	<div class="main container">
+			<table class="table table-striped">
+				    <thead>
+					    <tr>
+					        <th>医生名字</th>
+					        <th>医生剩余号数</th>
+					        <th>所属科室</th>
+					    </tr>
+				    </thead>
+				    <tbody>
+						<foreach name="list" item="vo">
+					    <tr>
+					        <td>{$vo.expertname}</td>
+					        <td>{$vo.count}</td>
+					        <td>{$vo.keshiname}</td>
+
+						</tr>
+					</foreach>
+				    </tbody>
+			</table>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.min.js"></script> 
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/bootstrap.min.js"></script> 
+</body>
+</html>

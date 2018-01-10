@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>医院新增</title>
+	
+
+	<link rel="stylesheet" href="__PUBLIC__/Admin/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/addstyle.css">
+</head>
+<body>
+	
+	<div class="container">
+        <div class="add">
+            <div class="add_head">
+                <h3><span>科室修改</span></h3>
+            </div>
+            <form action="{:U('admin/Hospital/editx')}" method="post">
+                <foreach name="list" item="qq">
+                    <!--医院代码-->
+                    <div class="add-box">
+                            <!--表单项-->
+                            <div class="box">
+                                <label for="addr">科 室 类 别</label>
+                                  <input name="keshitypecode" style="display:none" class="input-xlarge" value="{$qq.keshitypecode}" id="addr">
+                                  <input disabled class="input-xlarge" value="{$qq.keshitypecode}" id="addr">
+                                
+                            </div>
+                            
+                    </div>
+                    <div class="add-box">
+                            <!--表单项-->
+                            <div class="box">
+                                <label for="hoscode">科 室 代 码</label>
+                                <input name="keshicode" style="display:none" class="input-xlarge" type="text" id="hoscode" placeholder="科室代码" value="{$qq.keshicode}">
+                                <input disabled class="input-xlarge" value="{$qq.keshicode}" id="addr">
+                            </div>
+                            
+                    </div>
+                    <!-- 密码 -->
+                    <div class="add-box">
+                            <!--表单项-->
+                            <div class="box">
+                                <label for="hosName">科 室 名 称</label>
+                                <input name="keshiname" style="display:none" class="input-xlarge" type="text" id="hosName" placeholder="科室名称" value="{$qq.keshiname}">
+                                <input disabled class="input-xlarge" value="{$qq.keshiname}" id="addr">
+                            </div>
+                           
+                    </div>
+                </foreach>
+                    <!-- 确认密码 -->
+                    
+                     <div class="add-box">
+                            <!--表单项-->
+                            <div class="box">
+                                <label for="addr">科 室 简 介</label>
+                                <input name="keshiinfo" class="input-xlarge" type="text" id="hosName" placeholder="科室简介" value="{$qq.keshiinfo}">
+                                
+                            </div>
+                            
+                    </div>
+                    
+                    <!-- 注册按钮 -->
+                   <div class="add-box">
+                   	 <input type="submit" class="btn btn-success tijiao" value="提交">
+                   </div>
+                
+            </form>
+        </div>
+    </div>
+</body>
+</html>

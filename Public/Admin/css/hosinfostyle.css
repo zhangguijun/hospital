@@ -1,0 +1,31 @@
+/*
+* @Author: Zhao
+* @Date:   2017-12-28 20:33:47
+* @Last Modified by:   Zhao
+* @Last Modified time: 2017-12-28 20:37:20
+*/
+.hos_info{
+	width: 50%;
+	margin-top: 20px;
+}
+.add{
+	margin: 0 auto;
+
+	height: 500px;
+}
+.input-xlarge{
+	width: 74%;
+}
+.add-box{
+	width: 50%;
+	margin-top: 20px;
+}
+.box{
+	width: 100%;
+}
+label{
+	width: 24%;
+}
+.tijiao{
+	width: 100%;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>医院专家管理</title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/dist/css/bootstrap.min.css">
+
+
+</head>
+<body>
+
+	<div class="main container">
+		<a class="btn btn-info" href="./yishengguahaoguanli.html">专家坐诊时间表</a>
+		<a class="btn btn-info" href="./yishengtingzhenshengqibiao.html">医生停诊申请表</a>
+		<form action="{:U('admin/Hospital/yishengguahaoguanli')}" method="post">
+			专家：<input name="expertname" class="hospitaltext" type="text" placeholder="专家姓名">
+			 <input type="submit" class="btn" value="搜索">
+			 <a class="btn btn-success" href="{:U('admin/hospital/add2')}"> 添加</a>
+		</form>
+
+			<table class="table">
+				    <thead>
+					    <tr>
+					        <th>专家</th>
+					        <th></th>
+					        <th>周一</th>
+					        <th>周二</th>
+					        <th>周三</th>
+					        <th>周四</th>
+					        <th>周五</th>
+					        <th>周六</th>
+							<th>周日</th>
+							<th></th>
+					        <th></th>
+					    </tr>
+				    </thead>
+					<foreach name="list" item="zj">
+				    <tbody>
+						
+					    <tr>
+							<td rowspan="2">{$zj.expertname}</td>
+					        <td >上午 </td>
+					        <td class="toggle">{$zj.monmor}</td>
+					        <td class="toggle">{$zj.tuemor}</td>
+					        <td class="toggle">{$zj.wedmor}</td>
+					        <td class="toggle">{$zj.thumor}</td>
+					        <td class="toggle">{$zj.frimor}</td>
+					        <td class="toggle">{$zj.satmor}</td>
+							<td class="toggle">{$zj.sunmor}</td>
+							<th rowspan="2">
+								<form action="{:U('admin/Hospital/yishengguahaoguanli',array('expertname'=>$zj['expertname']))}" method="get">
+								<input type="submit" class=" btn btn-danger" value="删除"> 
+								</form>
+							</th>
+					        <th></th>
+					    </tr> 
+					     <tr>
+					        
+					        <td>下午 </td>
+					        <td class="toggle">{$zj.monaft} </td>
+					        <td class="toggle">{$zj.tueaft} </td>
+					        <td class="toggle">{$zj.wedaft}</td>
+					        <td class="toggle">{$zj.thuaft}</td>
+					        <td class="toggle">{$zj.friaft}</td>
+					        <td class="toggle">{$zj.sataft}</td>
+					        <td class="toggle">{$zj.sunaft}</td>
+					    </tr> 
+						
+				    </tbody>
+					</foreach>
+			</table>
+			<div style="text-align:center">
+					{$page}</div>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.min.js"></script> 
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/bootstrap.min.js"></script>
+	<script>
+		$(function(){ 
+			// if($('.toggle').text() == "坐诊"){
+			// 	$(this).css('color','green');
+			// }else{
+			// 	$(this).css('color','red');
+			// }
+			
+			var a = $('.toggle').text();
+
+			var arr = a.split('诊');
+			console.log(arr);
+
+			
+	}); 
+		$(".toggle").click(function(){
+			if($(this).text() == "坐诊"){
+				$(this).text("停诊");
+				$(this).css('color','red');
+			}else{
+				$(this).text("坐诊"); 
+				$(this).css('color','green');
+			}
+			// alert("asas");
+		})
+		
+	</script> 
+</body>
+</html>
